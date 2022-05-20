@@ -4,7 +4,14 @@
  */
 package classe;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -12,6 +19,10 @@ import java.util.ArrayList;
  */
 public class Fentre extends javax.swing.JFrame {
     ArrayList<vechicule> vechicule;
+    DefaultListModel modeleliste;
+    File fichier;
+    FileWriter fw;
+    PrintWriter pw;
 
     /**
      * Creates new form Fentre
@@ -19,6 +30,21 @@ public class Fentre extends javax.swing.JFrame {
     public Fentre() {
         initComponents();
         vechicule = new ArrayList<>();
+        modeleliste= new DefaultListModel();
+        try {
+            fichier = new File("fichier.veh");
+            fw = new FileWriter(fichier);
+            pw = new PrintWriter(fw);
+
+        } catch (IOException ex) {
+                  ex.printStackTrace();
+        }
+        
+        
+        
+        
+        
+                
     }
 
     /**
