@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,6 +82,11 @@ public class Fentre extends javax.swing.JFrame {
 
         btnAFermer.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAFermer.setText("Fermer");
+        btnAFermer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAFermerActionPerformed(evt);
+            }
+        });
 
         btnenregistrer.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnenregistrer.setText("enregistrer");
@@ -140,6 +146,12 @@ public class Fentre extends javax.swing.JFrame {
     private void btnenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenregistrerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnenregistrerActionPerformed
+
+    private void btnAFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAFermerActionPerformed
+        // TODO add your handling code here:
+        int chois=JOptionPane.showConfirmDialog(this, "tu est sur de sortir", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(chois==0){System.exit(0);}
+    }//GEN-LAST:event_btnAFermerActionPerformed
 
     /**
      * @param args the command line arguments
