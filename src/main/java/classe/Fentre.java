@@ -71,6 +71,11 @@ public class Fentre extends javax.swing.JFrame {
 
         btnAjouter.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAjouter.setText("Ajouter");
+        btnAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAjouterActionPerformed(evt);
+            }
+        });
 
         btnASuprimer.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnASuprimer.setText("Suprimer");
@@ -152,6 +157,38 @@ public class Fentre extends javax.swing.JFrame {
         int chois=JOptionPane.showConfirmDialog(this, "tu est sur de sortir", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(chois==0){System.exit(0);}
     }//GEN-LAST:event_btnAFermerActionPerformed
+
+    private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
+        // TODO add your handling code here:
+        String marque,modele,imatriculation,type;
+        int nombreduporte,vitesseMAX;
+        boolean remorque;
+        type = JOptionPane.showInputDialog(this, "ENTRER LA TYPE DE VECHICULE VOITURE/CAMION/MOTO",JOptionPane.PLAIN_MESSAGE);
+        if(type.equalsIgnoreCase("Voiture")){
+         marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+        modele = JOptionPane.showInputDialog(this, "ENTRER LE MODELE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+        imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+            nombreduporte =Integer.parseInt(JOptionPane.showInputDialog(this, "ENTRER LE NOMBRE DU PORTE DE VOITURE",JOptionPane.PLAIN_MESSAGE) );
+        }
+        else if(type.equalsIgnoreCase("MOTO")){
+                    marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+        modele = JOptionPane.showInputDialog(this, "ENTRER LE MODELE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+        imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+        
+            vitesseMAX =Integer.parseInt(JOptionPane.showInputDialog(this, "ENTRER LE VITESSE MAX",JOptionPane.PLAIN_MESSAGE) );
+        }
+        else if (type.equalsIgnoreCase("camion")){
+            marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+            modele = JOptionPane.showInputDialog(this, "ENTRER LE MODELE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+            imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+            int choix = JOptionPane.showConfirmDialog(this, "le camione a un remorque","remorque", JOptionPane.YES_NO_OPTION);
+            if(choix==0)remorque=true;
+            else remorque=false;
+        }
+        else{
+        JOptionPane.showMessageDialog(this, "votre chois est incorrecte", "choix incorrecte", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_btnAjouterActionPerformed
 
     /**
      * @param args the command line arguments
