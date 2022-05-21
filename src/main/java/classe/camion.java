@@ -24,4 +24,20 @@ public class camion extends vechicule {
         this.remorque = remorque;
     }
     
+    
+        @Override
+    public String toString() {
+        String chaine ;
+        if(isRemorque()){
+                chaine= "le camion est de marque " + getMarque() + " mdodele " + getModele() + " son immatriculation est " + getImatriculation() + " contient un remorque" ;
+
+        }    
+        else{
+            chaine= "le camion est de marque " + getMarque() + " mdodele " + getModele() + " son immatriculation est " + getImatriculation() + " ne pas contient un remorque" ;
+
+        }
+        return chaine; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    
 }

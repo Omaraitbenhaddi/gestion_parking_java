@@ -108,23 +108,23 @@ public class Fentre extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(25, 25, 25))
+                        .addGap(0, 18, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAjouter)
                         .addGap(37, 37, 37)
                         .addComponent(btnASuprimer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnModifier)
                         .addGap(28, 28, 28)
                         .addComponent(btnenregistrer)
                         .addGap(28, 28, 28)
-                        .addComponent(btnAFermer)
-                        .addContainerGap())))
+                        .addComponent(btnAFermer)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,22 +160,28 @@ public class Fentre extends javax.swing.JFrame {
 
     private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
         // TODO add your handling code here:
+        vechicule v = null;
         String marque,modele,imatriculation,type;
         int nombreduporte,vitesseMAX;
         boolean remorque;
         type = JOptionPane.showInputDialog(this, "ENTRER LA TYPE DE VECHICULE VOITURE/CAMION/MOTO",JOptionPane.PLAIN_MESSAGE);
         if(type.equalsIgnoreCase("Voiture")){
-         marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
-        modele = JOptionPane.showInputDialog(this, "ENTRER LE MODELE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
-        imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+            marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+            modele = JOptionPane.showInputDialog(this, "ENTRER LE MODELE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+            imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
             nombreduporte =Integer.parseInt(JOptionPane.showInputDialog(this, "ENTRER LE NOMBRE DU PORTE DE VOITURE",JOptionPane.PLAIN_MESSAGE) );
+            v=new voiture(marque,modele,imatriculation,nombreduporte);
+            vechicule.add(v);
         }
         else if(type.equalsIgnoreCase("MOTO")){
-                    marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
+        marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
         modele = JOptionPane.showInputDialog(this, "ENTRER LE MODELE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
         imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
-        
-            vitesseMAX =Integer.parseInt(JOptionPane.showInputDialog(this, "ENTRER LE VITESSE MAX",JOptionPane.PLAIN_MESSAGE) );
+        vitesseMAX =Integer.parseInt(JOptionPane.showInputDialog(this, "ENTRER LE VITESSE MAX",JOptionPane.PLAIN_MESSAGE) );
+        v= new motor(marque,modele,imatriculation,vitesseMAX);
+                    vechicule.add(v);
+
+
         }
         else if (type.equalsIgnoreCase("camion")){
             marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
@@ -184,10 +190,16 @@ public class Fentre extends javax.swing.JFrame {
             int choix = JOptionPane.showConfirmDialog(this, "le camione a un remorque","remorque", JOptionPane.YES_NO_OPTION);
             if(choix==0)remorque=true;
             else remorque=false;
+            v= new camion(marque,modele,imatriculation,remorque);
+            vechicule.add(v);
+
+
         }
         else{
         JOptionPane.showMessageDialog(this, "votre chois est incorrecte", "choix incorrecte", JOptionPane.OK_OPTION);
         }
+        modeleliste.add(modeleliste.getSize(),v);
+        listevechicule.setModel(modeleliste);
     }//GEN-LAST:event_btnAjouterActionPerformed
 
     /**

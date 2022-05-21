@@ -22,5 +22,12 @@ public class voiture extends vechicule {
     public void setNombrePorte(int nombrePorte) {
         this.nombrePorte = nombrePorte;
     }
+
+    @Override
+    public String toString() {
+        String chaine = "le voiture est de marque " + getMarque() + " mdodele " + getModele() + " son immatriculation est " + getImatriculation() + " avec nombre de porte " + getNombrePorte() ;
+        return chaine; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
     
 }

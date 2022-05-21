@@ -24,4 +24,11 @@ public class motor extends vechicule {
         this.vitesseMax = vitesseMax;
     }
     
+    @Override
+    public String toString() {
+        String chaine = "le moto est de marque " + getMarque() + " mdodele " + getModele() + " son immatriculation est " + getImatriculation() + " a une vitesse MAX " + getVitesseMax() ;
+        return chaine; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    
 }
