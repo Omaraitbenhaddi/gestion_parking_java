@@ -103,6 +103,11 @@ public class Fentre extends javax.swing.JFrame {
 
         btnModifier.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnModifier.setText("Modifier");
+        btnModifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifierActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,6 +220,45 @@ public class Fentre extends javax.swing.JFrame {
         modeleliste.add(modeleliste.getSize(),v);
         listevechicule.setModel(modeleliste);
     }//GEN-LAST:event_btnAjouterActionPerformed
+
+    private void btnModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifierActionPerformed
+        // TODO add your handling code here:
+        String model,marque,immatriculation;
+        int nombreporte,vitesseMAX,remorque;
+        if(listevechicule.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "selectioner un vechicule a modifier","Pas de selection",
+                    JOptionPane.ERROR);
+        else{
+        int indice = listevechicule.getSelectedIndex();
+        vechicule v= vechicules.get(indice);
+        marque = JOptionPane.showInputDialog(this, "changer la marque", v.getMarque());
+        v.setMarque(marque);
+        model = JOptionPane.showInputDialog(this, "changer le model", v.getModele());
+        v.setModele(model);
+        immatriculation = JOptionPane.showInputDialog(this, "change la matricule", v.getImatriculation());
+        v.setImatriculation(immatriculation);
+        if(v instanceof voiture){
+            nombreporte = Integer.valueOf(JOptionPane.showInputDialog(this, "entrer le nombre de porte de voiure", ((voiture) v).getNombrePorte() ));
+            ((voiture) v).setNombrePorte(nombreporte);
+        }
+        else if(v instanceof motor){
+        vitesseMAX = Integer.valueOf(JOptionPane.showInputDialog(this, "entrer la vitesse maximal", ((motor) v).getVitesseMax()));
+        ((motor) v).setVitesseMax(vitesseMAX);
+        }
+        else if(v instanceof camion){
+            remorque = JOptionPane.showConfirmDialog(this, "le camion a t'il un remorqe", "Remorque", JOptionPane.YES_NO_OPTION);
+            boolean choix = true;
+            if(remorque==JOptionPane.NO_OPTION){
+            choix = false;
+            }
+            ((camion) v).setRemorque(choix);
+        }
+        else {
+        JOptionPane.showConfirmDialog(this, "tu as fait un EREUR", "EREUR", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        listevechicule.setModel(modeleliste);
+    }//GEN-LAST:event_btnModifierActionPerformed
 
     /**
      * @param args the command line arguments
