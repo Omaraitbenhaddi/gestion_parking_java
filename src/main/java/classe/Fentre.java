@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author HP
  */
 public class Fentre extends javax.swing.JFrame {
-    ArrayList<vechicule> vechicule;
+    ArrayList<vechicule> vechicules;
     DefaultListModel modeleliste;
     File fichier;
     FileWriter fw;
@@ -30,7 +30,7 @@ public class Fentre extends javax.swing.JFrame {
      */
     public Fentre() {
         initComponents();
-        vechicule = new ArrayList<>();
+        vechicules = new ArrayList<>();
         modeleliste= new DefaultListModel();
         try {
             fichier = new File("fichier.veh");
@@ -146,10 +146,22 @@ public class Fentre extends javax.swing.JFrame {
 
     private void btnASuprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnASuprimerActionPerformed
         // TODO add your handling code here:
+        if(listevechicule.isSelectionEmpty())
+            JOptionPane.showMessageDialog(this, "selectioner un vechicule a suprimer","Pas de selection",
+                    JOptionPane.ERROR);
+        else{
+        int indice = listevechicule.getSelectedIndex();
+        modeleliste.remove(indice);
+        vechicules.remove(indice);
+        }
     }//GEN-LAST:event_btnASuprimerActionPerformed
 
     private void btnenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenregistrerActionPerformed
         // TODO add your handling code here:
+        for(vechicule v: vechicules){
+            pw.println(v);
+        }
+        pw.close();
     }//GEN-LAST:event_btnenregistrerActionPerformed
 
     private void btnAFermerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAFermerActionPerformed
@@ -160,18 +172,20 @@ public class Fentre extends javax.swing.JFrame {
 
     private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
         // TODO add your handling code here:
+        
         vechicule v = null;
         String marque,modele,imatriculation,type;
         int nombreduporte,vitesseMAX;
         boolean remorque;
         type = JOptionPane.showInputDialog(this, "ENTRER LA TYPE DE VECHICULE VOITURE/CAMION/MOTO",JOptionPane.PLAIN_MESSAGE);
-        if(type.equalsIgnoreCase("Voiture")){
+        if(type==null){}
+        else if(type.equalsIgnoreCase("Voiture")){
             marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
             modele = JOptionPane.showInputDialog(this, "ENTRER LE MODELE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
             imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
             nombreduporte =Integer.parseInt(JOptionPane.showInputDialog(this, "ENTRER LE NOMBRE DU PORTE DE VOITURE",JOptionPane.PLAIN_MESSAGE) );
             v=new voiture(marque,modele,imatriculation,nombreduporte);
-            vechicule.add(v);
+            vechicules.add(v);
         }
         else if(type.equalsIgnoreCase("MOTO")){
         marque = JOptionPane.showInputDialog(this, "ENTRER LA MARQUE DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
@@ -179,7 +193,7 @@ public class Fentre extends javax.swing.JFrame {
         imatriculation = JOptionPane.showInputDialog(this, "ENTRER L' IMATRICULATION DE VECHICULE",JOptionPane.PLAIN_MESSAGE);
         vitesseMAX =Integer.parseInt(JOptionPane.showInputDialog(this, "ENTRER LE VITESSE MAX",JOptionPane.PLAIN_MESSAGE) );
         v= new motor(marque,modele,imatriculation,vitesseMAX);
-                    vechicule.add(v);
+                    vechicules.add(v);
 
 
         }
@@ -191,7 +205,7 @@ public class Fentre extends javax.swing.JFrame {
             if(choix==0)remorque=true;
             else remorque=false;
             v= new camion(marque,modele,imatriculation,remorque);
-            vechicule.add(v);
+            vechicules.add(v);
 
 
         }
